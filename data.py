@@ -25,19 +25,34 @@ h_scores = {(1,2):10, (1,3):18.5, (1,4):24.8, (1,5):36.4, (1,6):38.8, (1,7):35.8
             (12,13):28.8, (12,14):33.6,
             (13,14):5.1}
 
-e1 = Node(1, [2])
-e2 = Node(2, [1,3,9,10])
-e3 = Node(3, [2,4,9,13])
-e4 = Node(4, [3,5,8,13])
-e5 = Node(5, [4,6,7,8])
-e6 = Node(6, [5])
-e7 = Node(7, [5])
-e8 = Node(8, [4,5,9,12])
-e9 = Node(9, [2,3,8,11])
-e10 = Node(10, [2])
-e11 = Node(11, [9])
-e12 = Node(12, [8])
-e13 = Node(13, [3,4,14])
-e14 = Node(14, [13])
+e1 = Node(1)
+e2 = Node(2)
+e3 = Node(3)
+e4 = Node(4)
+e5 = Node(5)
+e6 = Node(6)
+e7 = Node(7)
+e8 = Node(8)
+e9 = Node(9)
+e10 = Node(10)
+e11 = Node(11)
+e12 = Node(12)
+e13 = Node(13)
+e14 = Node(14)
+
+e1.neighbors = [e2]
+e2.neighbors = [e1, e3, e9, e10]
+e3.neighbors = [e2, e4, e9, e13]
+e4.neighbors = [e3, e5, e8, e13]
+e5.neighbors = [e4, e6, e7, e8]
+e6.neighbors = [e5]
+e7.neighbors = [e5]
+e8.neighbors = [e4, e5, e9, e12]
+e9.neighbors = [e2, e3, e8, e11]
+e10.neighbors = [e2]
+e11.neighbors = [e9]
+e12.neighbors = [e8]
+e13.neighbors = [e3, e4, e14]
+e14.neighbors = [e13]
 
 nodes = [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14]

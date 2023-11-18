@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, id, neighbors):
+    def __init__(self, id):
         self.id = id
-        self.neighbors = neighbors
+        self.neighbors = None
         self.previous = None

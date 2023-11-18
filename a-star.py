@@ -27,7 +27,7 @@ goal = e7
 
 g_score[start] = 0
 f_score[start] = h(start, goal)
-Open.put((f_score[start], f_score[start], start))
+Open.put((f_score[start], start))
 reversedPath = {}
 
 while Open != []: 
@@ -53,6 +53,7 @@ while Open != []:
             neighbor.previous = curr
 
 print(reversedPath)
+print('oi')
 
 '''
 path = {}
