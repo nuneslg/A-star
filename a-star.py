@@ -24,33 +24,37 @@ f_score = {node : float('inf') for node in nodes}
 #only for debugging
 start = e12
 goal = e7
+line = 'G'
 
 g_score[start] = 0
 f_score[start] = h(start, goal)
-Open.put((f_score[start], start))
+Open.put((f_score[start], start, line))
 reversedPath = {}
 
 while Open != []: 
-    curr = Open.get()[1] # get the id of the node with the lowest f-score
+    curr, line = Open.get()[1:] # get the id of the node with the lowest f-score and the line
     if curr == goal:
         break
     for neighbor in curr.neighbors:
-        if curr == start:
-            curr.previous = curr
-
-        tempGScore = g(curr.id, curr.previous.id) #g-score of current (0) 
-        tempFScore = tempGScore + h(neighbor.id, goal.id) #f-score of neighbor (27.4)
+        #if curr == start:
+            #curr.previous = curr (desnecessário?)
+        tempGScore = g(curr.id, neighbor.id) + g_score[curr]
+        tempLine = line
+        if line not in neighbor.lines:
+            tempGScore += 2 #add 4 minutes for changing lines
+            for n_line in curr.lines:
+                if n_line != line:
+                    tempLine = n_line
+        #talvez seja necessário guardar essa baldeação
+        tempFScore = tempGScore + h(neighbor.id, goal.id) 
 
         if tempFScore < f_score[neighbor]:
-            if f_score[neighbor] == float('inf'): #if neighbor was never visited
-                g_score[neighbor] = tempGScore
-                f_score[neighbor] = tempFScore
-            else:
-                g_score[neighbor] = tempGScore + g_score[curr]
-                f_score[neighbor] = tempFScore + g_score[curr]
-            Open.put((tempFScore, neighbor))
-            reversedPath[neighbor] = curr
-            neighbor.previous = curr
+            g_score[neighbor] = tempGScore
+            f_score[neighbor] = tempFScore
+            print(f_score)
+            Open.put((tempFScore, neighbor, tempLine))
+            reversedPath[neighbor.id] = curr.id
+            #neighbor.previous = curr (desnecessário?)
 
 print(reversedPath)
 print('oi')
