@@ -41,7 +41,7 @@ while Open != []:
         tempGScore = g(curr.id, neighbor.id) + g_score[curr]
         tempLine = line
         if line not in neighbor.lines:
-            tempGScore += 2 #add 4 minutes for changing lines
+            tempGScore += 4 #add 4 minutes for changing lines
             for n_line in curr.lines:
                 if n_line != line:
                     tempLine = n_line
@@ -51,18 +51,15 @@ while Open != []:
         if tempFScore < f_score[neighbor]:
             g_score[neighbor] = tempGScore
             f_score[neighbor] = tempFScore
-            print(f_score)
             Open.put((tempFScore, neighbor, tempLine))
-            reversedPath[neighbor.id] = curr.id
+            reversedPath[neighbor] = curr
             #neighbor.previous = curr (desnecessário?)
 
-print(reversedPath)
-print('oi')
-
-'''
-path = {}
+path = []
 curr = goal
 while curr != start:
-    path[reversedPath[curr]] = curr
+    path.append(reversedPath[curr])
     curr = reversedPath[curr]
-'''
+
+for node in reversed(path):
+    print(node.id)
