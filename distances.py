@@ -1,6 +1,3 @@
-from node import Node
-
-#refactor to stop using id 
 g_scores = {(1, 2): 20,
             (2, 3): 17.0, (2, 9): 20.0, (2, 10): 7.0,
             (3, 4): 12.6, (3, 9): 18.8, (3, 13): 37.4,
@@ -10,7 +7,6 @@ g_scores = {(1, 2): 20,
             (9, 11): 24.4,
             (13, 14): 10.2}
 
-#refactor to stop using id 
 h_scores = {(1, 2): 20, (1, 3): 37.0, (1, 4): 49.6, (1, 5): 72.8, (1, 6): 77.6, (1, 7): 71.6, (1, 8): 50.8, (1, 9): 35.2, (1, 10): 18.2, (1, 11): 33.4, (1, 12): 54.6, (1, 13): 55.2, (1, 14): 59.6, 
             (2, 3): 17.0, (2, 4): 29.6, (2, 5): 53.2, (2, 6): 58.2, (2, 7): 52.2, (2, 8): 34.6, (2, 9): 20.0, (2, 10): 7.0, (2, 11): 31.0, (2, 12): 41.8, (2, 13): 38.2, (2, 14): 43.6, 
             (3, 4): 12.6, (3, 5): 36.4, (3, 6): 41.2, (3, 7): 35.2, (3, 8): 27.2, (3, 9): 18.8, (3, 10): 20.6, (3, 11): 39.0, (3, 12): 38.2, (3, 13): 24.2, (3, 14): 33.2, 
@@ -25,34 +21,18 @@ h_scores = {(1, 2): 20, (1, 3): 37.0, (1, 4): 49.6, (1, 5): 72.8, (1, 6): 77.6, 
             (12, 13): 57.6, (12, 14): 67.2, 
             (13, 14): 10.2}
 
-e1 = Node(1, ['B'])
-e2 = Node(2, ['B', 'Y'])
-e3 = Node(3, ['B', 'R'])
-e4 = Node(4, ['B', 'G'])
-e5 = Node(5, ['B', 'Y'])
-e6 = Node(6, ['B'])
-e7 = Node(7, ['Y'])
-e8 = Node(8, ['G', 'Y'])
-e9 = Node(9, ['R', 'Y'])
-e10 = Node(10, ['Y'])
-e11 = Node(11, ['R'])
-e12 = Node(12, ['G'])
-e13 = Node(13, ['R', 'G'])
-e14 = Node(14, ['G'])
-
-e1.neighbors = [e2]
-e2.neighbors = [e1, e3, e9, e10]
-e3.neighbors = [e2, e4, e9, e13]
-e4.neighbors = [e3, e5, e8, e13]
-e5.neighbors = [e4, e6, e7, e8]
-e6.neighbors = [e5]
-e7.neighbors = [e5]
-e8.neighbors = [e4, e5, e9, e12]
-e9.neighbors = [e2, e3, e8, e11]
-e10.neighbors = [e2]
-e11.neighbors = [e9]
-e12.neighbors = [e8]
-e13.neighbors = [e3, e4, e14]
-e14.neighbors = [e13]
-
-nodes = [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14]
+def g(i, j):
+    if (i,j) in g_scores:
+        return g_scores[(i,j)]
+    elif (j,i) in g_scores:
+        return g_scores[(j,i)]
+    else:
+        return 0
+    
+def h(i, j):
+    if (i,j) in h_scores:
+        return h_scores[(i,j)]
+    elif (j,i) in h_scores:
+        return h_scores[(j,i)]
+    else:
+        return 0
