@@ -1,3 +1,5 @@
+
+#distances represented by the time in minutes for a speed of 30km/h
 g_scores = {(1, 2): 20,
             (2, 3): 17.0, (2, 9): 20.0, (2, 10): 7.0,
             (3, 4): 12.6, (3, 9): 18.8, (3, 13): 37.4,

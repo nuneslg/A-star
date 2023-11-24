@@ -6,6 +6,7 @@ def aStar(start, s_line, goal, g_line):
     closed = []
     counter = 1
 
+    # g and f scores for each pair of node and line
     g_score = {str(node.id)+line : float('inf') for node in nodes for line in node.lines} 
     f_score = {str(node.id)+line : float('inf') for node in nodes for line in node.lines}
 
@@ -20,9 +21,6 @@ def aStar(start, s_line, goal, g_line):
         closed.append(curr) #add the node to the closed list
         if curr == goal:
             if line == g_line:
-                parent, p_line = nodeParent[(curr, line)] #get the parent of the goal's node
-                #if p_line != line:
-                 #   f_score[str(curr.id)+line] += 4 #add 4 minutes for changing lines
                 totalTime = f_score[str(curr.id)+line] #total time is the f-score of the goal's node 
                 break
             else:
@@ -64,7 +62,7 @@ def aStar(start, s_line, goal, g_line):
 
     while curr != start:
         parent, parentLine = nodeParent[(curr, line)]
-        if parentLine != line and parent != curr:
+        if parentLine != line and parent != curr: #add the transfer to the path
             path.append((parent, line))
         path.append((parent, parentLine))
         curr, line = parent, parentLine
